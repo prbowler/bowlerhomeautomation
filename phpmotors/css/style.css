@@ -57,11 +57,6 @@ main img {
     position: static;
 }
 
-div {
-    border-style: solid;
-    border-color: red;
-}
-
 .Info {
     display:flex;
 }
