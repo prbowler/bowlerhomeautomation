@@ -8,10 +8,10 @@ function databaseConnect(){
     //$password = 'qBzPz6yEGrTb0UcF';
 
     //heroku database
-    $server = 'mysql://baa0e81b318289:4e03dad6@us-cdbr-east-05.cleardb.net';
-    $dbname = 'heroku_7b4c11141cf792a';
-    $username = 'baa0e81b318289';
-    $password = '4e03dad6';
+    $server = 'mysql://b4ea6cffd8b299:3e88d9bf@us-cdbr-east-05.cleardb.net';
+    $dbname = 'heroku_cd3f44fce4ead91';
+    $username = 'b4ea6cffd8b299';
+    $password = '3e88d9bf';
 
     $dsn = 'mysql:host='.$server.';dbname='.$dbname;
     $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
