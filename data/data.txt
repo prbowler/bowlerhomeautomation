@@ -1,0 +1,1 @@
+{"tstatId":"2","tstatName":"Home","htgSp":"68","clgSp":"74","sysSp":"htg","sfSp":"auto","sat":"60","zt":"60","rat":"60","sf":"0","htg":"0","clg":"0"}
