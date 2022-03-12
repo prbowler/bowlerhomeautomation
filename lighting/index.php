@@ -1,17 +1,17 @@
 <?php 
     session_start();
     require_once $_SERVER['DOCUMENT_ROOT'] . '/library/functions.php';
-    //require_once $_SERVER['DOCUMENT_ROOT'] . '/models/lighting_model.php'; //with database
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/lighting_model.php'; //with database
 
     //database connection
-    //$lightingData = getLightingData(); //with database
+    $lightingData = getLightingData(); //with database
     
-    $lightingData = array(
+    /*$lightingData = array(
         array("name"=>"Front","status"=>"0"),
         array("name"=>"Kitchen","status"=>"1"),
         array("name"=>"Dining","status"=>"0"),
         array("name"=>"MasterBR","status"=>"1")
-    ); //without database
+    ); //without database*/
     //var_dump($lightingData);
 
     $switches = getLighting($lightingData);
