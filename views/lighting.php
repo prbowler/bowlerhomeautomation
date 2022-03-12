@@ -4,12 +4,11 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php'; 
 ?> 
 
-<h1> Lighting Page </h1>
-<hr />
+    <h1> Lighting Switches and Status </h1>
+    <hr />
+    <?php echo $switches;?>
 
 <?php 
-    echo $switches;
-    //echo $lightStatus;
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 

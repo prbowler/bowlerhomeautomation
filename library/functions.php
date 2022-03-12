@@ -31,14 +31,19 @@ function getSfOptions($sfSp) {
 function getlighting($lightingData) {
     $switches = "<div id='lights'>";
     foreach($lightingData as $room) {
-        $switches .= "<span><p>" . $room['name'] . "</p>";
+        $name = $room['name'];
+        $src = "/img/$name.jpg";
+        $switches .= '<div class="room">';
+        $switches .= "<span>";
+        $switches .= "<img src=$src>";
         $switches .= "<label class='switch'><input type='checkbox'><span class='slider'></span></label>";
         $switches .= "</span>";
         if($room['status'] == "0"){
-            $switches .= "<img src='/img/light.png' width='50' height='50'>";
+            $switches .= "<img id=$name src='/img/light.png' width='50' height='50'>";
         } else {
-            $switches .= "<img src='/img/light-on.png' width='50' height='50'>";
+            $switches .= "<img id=$name src='/img/lighton.png' width='50' height='50'>";
         }
+        $switches .= "</div>";
     }
     $switches .= "</div>";
     return $switches;
