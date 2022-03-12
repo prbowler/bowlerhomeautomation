@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css">
         <script src="/js/speech.js"></script>
         <script src="/js/clock.js"></script>
+        <script src="/js/Chart.min.js"></script>
     </head>
     <body>
         <header>

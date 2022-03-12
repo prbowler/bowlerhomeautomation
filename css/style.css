@@ -286,8 +286,31 @@ input:checked + .slider:before {
 .room {
   display:flex;
   margin: 4rem;
+  border: solid;
+  padding: 20px;
+  border-radius: 20px;
+  border-color: blanchedalmond;
+  background-color: rgba(200,200,200,.5);
 }
 
+/*Added for Usage*/
+#Current {
+  width:100%;
+  max-width:600px;
+  border: solid;
+  background-color: rgba(200,200,200,.9);
+  border-radius: 20px;
+  margin:10px;
+}
+
+#Total {
+  width:100%;
+  max-width:600px;
+  border: solid;
+  background-color: rgba(200,200,200,.9);
+  border-radius: 20px;
+  margin:10px;
+}
 
 @media screen and (min-width: 400px) {
 
