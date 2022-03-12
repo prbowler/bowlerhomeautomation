@@ -1,13 +1,16 @@
 <?php 
     $pageTitle = "Termostat";
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/header.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php';
-?>   
+?> 
+<div class="top"><?php require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php';?></div>   
 
-<main id="tstat">
+<h1> Thermostat Page </h1>
+<hr />
+
+<div id="tstat">
     <form action="/tstat/index.php" method="post" id="tstatSP">
     <div class="tPart t1">
-        <output type="number" id="zoneTemp" name="zoneTemp" <?php if(isset($zt)){echo "value='$zt'";} ?>>
+        <input type="number" id="zoneTemp" name="zoneTemp" <?php if(isset($zt)){echo "value='$zt'";} ?>readonly>
         <input type="text" id="tstatStatus" name="tstatStatus" value="Heating" readonly>
         <input type="text" id="tstatAlarm" name="tstatStatus" value="Normal" readonly>
     </div>
@@ -30,10 +33,15 @@
         <input type="submit" value="Submit">
     </div>
     </form>
-</main>
+
+    <form action="/tstat/index.php" method="post" id="tstatSf">
+        <?php echo $sfOptions;?>
+        <input type="hidden" name="action" value="chgSf"> 
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 
 

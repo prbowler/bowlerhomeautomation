@@ -25,7 +25,7 @@
             include './usage/index.php';
             break;
         case 'home':
-            include './usage/index.php';
+            include './index.php';
             break;
         default:
         include './index.php';

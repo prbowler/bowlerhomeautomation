@@ -16,5 +16,3 @@
             <h1></h1>
             <div id="timer"></div>
         </header>
-        <nav></nav>
-        <main>
