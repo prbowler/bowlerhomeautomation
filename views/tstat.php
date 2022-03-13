@@ -4,7 +4,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php';
 ?>   
 
-<main id="tstat">
+<div id="tstat">
     <form action="/tstat/index.php" method="post" id="tstatSP">
     <div class="tPart t1">
         <output type="number" id="zoneTemp" name="zoneTemp" <?php if(isset($zt)){echo "value='$zt'";} ?>>
@@ -30,7 +30,7 @@
         <input type="submit" value="Submit">
     </div>
     </form>
-</main>
+</div>
 
 <?php 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 

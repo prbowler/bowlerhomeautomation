@@ -3,7 +3,7 @@
     session_start();
     
     require_once $_SERVER['DOCUMENT_ROOT'] . '/library/connections.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/users.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/users_model.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/library/functions.php';
     
     $action = filter_input(INPUT_POST, 'action');
@@ -22,23 +22,23 @@
         break;
         case 'register':
             $pageTitle = "User Registration";
-            $userEmail = trim(filter_input(INPUT_POST, 'userEmail', FILTER_SANITIZE_EMAIL));
+            $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
             $userPassword = trim(filter_input(INPUT_POST, 'userPassword', FILTER_SANITIZE_STRING));
-            $userEmail = checkEmail($userEmail);
+            $email = checkEmail($email);
             $checkPassword = checkPassword($userPassword);
 
-            $existingEmail = checkExistingEmail($userEmail);
+            $existingEmail = checkExistingEmail($email);
             // Check for existing email address in the table
             if($existingEmail){
                 $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
-                include '../view/login.php';
+                include '../views/login.php';
                 exit;
             }
 
             // Check for missing data
-            if(empty($userEmail) || empty($checkPassword)){
+            if(empty($email) || empty($checkPassword)){
                 $message = '<p class="warning">Please provide information for all empty form fields.</p>';
-                include '../view/registration.php';
+                include '../views/registration.php';
                 exit; 
             }
             
@@ -46,16 +46,16 @@
             $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
             
             // Send the data to the model
-            $regOutcome = regUser($userEmail, $hashedPassword);
+            $regOutcome = regUser($email, $hashedPassword);
 
             // Check and report the result
             if($regOutcome === 1){
-                setcookie('email', $userEmail, strtotime('+1 year'), '/');
-                $_SESSION['message'] = "Thanks for registering $userEmail. Please use your email and password to login.";
-                header('Location: /userss/?action=login');
+                setcookie('email', $email, strtotime('+1 year'), '/');
+                $_SESSION['message'] = "Thanks for registering $email. Please use your email and password to login.";
+                header('Location: /users/?action=login');
                 exit;
             } else {
-                $message = "<p class='warning'>Sorry $userEmail, but the registration failed. Please try again.</p>";
+                $message = "<p class='warning'>Sorry $email, but the registration failed. Please try again.</p>";
                 include '../views/registration.php';
                 exit;
             }
@@ -63,23 +63,23 @@
         case 'Login':
             $_SESSION['message'] = "";
             $pageTitle = "Login";
-            $userEmail = trim(filter_input(INPUT_POST, 'userEmail', FILTER_SANITIZE_EMAIL));
+            $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
             $userPassword = trim(filter_input(INPUT_POST, 'userPassword', FILTER_SANITIZE_STRING));
-            $userEmail = checkEmail($userEmail);
+            $email = checkEmail($email);
             $checkPassword = checkPassword($userPassword); 
-            if(empty($userEmail) || empty($checkPassword)){
+            if(empty($email) || empty($checkPassword)){
                 $message = '<p>Please provide information for all empty form fields.</p>';
-                include '../view/login.php';
+                include '../views/login.php';
                 exit; 
             }
             
-            $userData = getuser($userEmail);
+            $userData = getuser($email);
            
             $hashCheck = password_verify($userPassword, $userData['userPassword']);
            
             if(!$hashCheck) {
                 $message = '<p class="notice">Please check your password and try again.</p>';
-                include '../view/login.php';
+                include '../views/login.php';
                 exit;
             }
             
@@ -90,7 +90,7 @@
             $_SESSION['userData'] = $userData;
             $pageTitle = "Admin";
             $_SESSION['message'] = "Login Successful";
-            header('Location: /accounts');
+            header('Location: /users');
             exit;
         break; 
         case 'Logout':
@@ -111,7 +111,7 @@
             if(empty($checkPassword)){
                 $message = '<p class="warning">Please provide information for all empty form fields.</p>';
                 $pageTitle = "Update Account";
-                include '../view/user-update.php';
+                include '../views/user-update.php';
                 exit; 
             }
             
@@ -128,14 +128,14 @@
                 $_SESSION['message'] = "ERROR: Password was not changed.";
             }
             $pageTitle = "Admin";
-            include '../view/admin.php';
+            include '../views/admin.php';
         break;
         default:
-            $pageTitle = "Admin";
+            $pageTitle = "Home";
             if ($_SESSION['loggedin'] == TRUE & isset($_SESSION['userData']['userId'])){
                 $userId = $_SESSION['userData']['userId'];
             }
-            include '../views/admin.php';
+            include '../views/home.php';
         break;
     }
 ?>

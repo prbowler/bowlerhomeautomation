@@ -1,5 +1,5 @@
 <?php 
-    //session_start();
+    session_start();
     require_once $_SERVER['DOCUMENT_ROOT'] . '/library/functions.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/models/tstat_model.php'; //with database
 

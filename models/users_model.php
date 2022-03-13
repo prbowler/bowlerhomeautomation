@@ -3,12 +3,12 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/connections.php';
 
 //Register user
-function regUser($userEmail, $userPassword){
+function regUser($email, $userPassword){
     $db = databaseConnect();
-    $sql = 'INSERT INTO userss (userEmail, userPassword)
-        VALUES (:userEmail, :userPassword)';
+    $sql = 'INSERT INTO users (email, userPassword)
+        VALUES (:email, :userPassword)';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':userEmail', $userEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->bindValue(':userPassword', $userPassword, PDO::PARAM_STR);
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
@@ -16,11 +16,11 @@ function regUser($userEmail, $userPassword){
     return $rowsChanged;
 }
 
-function checkExistingEmail($userEmail) {
+function checkExistingEmail($email) {
     $db = databaseConnect();
-    $sql = 'SELECT userEmail FROM users WHERE userEmail = :userEmail';
+    $sql = 'SELECT email FROM users WHERE email = :email';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':userEmail', $userEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
     $matchedEmails = $stmt->fetch(PDO::FETCH_NUM);
     $stmt->closeCursor();
@@ -32,18 +32,18 @@ function checkExistingEmail($userEmail) {
 }
 
 // Get user data based on an email address
-function getuser($userEmail){
+function getuser($email){
     $db = databaseConnect();
-    $sql = 'SELECT userId, userEmail, userPassword FROM users WHERE userEmail = :userEmail';
+    $sql = 'SELECT userId, email, userPassword FROM users WHERE email = :email';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':userEmail', $userEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $userData;
 }
 
-//Change user password
+//Change user userPassword
 function changePassword($userPassword, $userId){
     $db = databaseConnect();
     $sql = 'UPDATE users SET userPassword = :userPassword WHERE userId = :userId';
