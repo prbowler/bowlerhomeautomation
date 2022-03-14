@@ -35,7 +35,7 @@ function getlighting($lightingData) {
         $src = "/img/$name.jpg";
         $switches .= '<div class="room">';
         $switches .= "<span>";
-        $switches .= "<img src=$src>";
+        $switches .= "<img class='switchImg' src=$src>";
         $switches .= "<label class='switch'><input type='checkbox'><span class='slider'></span></label>";
         $switches .= "</span>";
         if($room['status'] == "0"){

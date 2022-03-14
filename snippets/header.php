@@ -9,13 +9,10 @@
         <title><?php if(isset($pageTitle)){ echo $pageTitle;}?> | Bowler Home Automation </title>
         <link rel="stylesheet" type="text/css" href="/css/style.css">
         <script src="/js/speech.js"></script>
-        <script src="/js/clock.js"></script>
         <script src="/js/Chart.min.js"></script>
     </head>
     <body>
         <header>
-            <h1></h1>
-            <div id="timer"></div>
             <?php 
                 $linkAccounts = "/users/index.php";
                 $linkAccountsLogout = "/users/index.php?action=Logout";

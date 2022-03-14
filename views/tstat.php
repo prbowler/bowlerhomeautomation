@@ -7,7 +7,7 @@
 <div id="tstat">
     <form action="/tstat/index.php" method="post" id="tstatSP">
     <div class="tPart t1">
-        <output type="number" id="zoneTemp" name="zoneTemp" <?php if(isset($zt)){echo "value='$zt'";} ?>>
+        <output type="number" id="zoneTemp" name="zoneTemp"><?php if(isset($zt)){echo $zt;} ?></output>
         <input type="text" id="tstatStatus" name="tstatStatus" value="Heating" readonly>
         <input type="text" id="tstatAlarm" name="tstatStatus" value="Normal" readonly>
     </div>

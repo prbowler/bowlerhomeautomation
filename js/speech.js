@@ -18,10 +18,10 @@ if (!('webkitSpeechRecognition' in window)) {
             }
         }
         document.getElementById('spokenTxt').value = saidText;
-        
+        $text = filterText($saidText);
         for (let key in speachTxt) {
             console.log("key= ", key);
-            if(key == saidText) {
+            if(key == text) {
                 document.getElementById('txt').value = speachTxt[key];
                 break;
             } else {
@@ -53,19 +53,33 @@ if (!('webkitSpeechRecognition' in window)) {
         "what is your name":"my name is Mildred",
         "hello":"hello to you too",
         "goodbye":"see you later",
-        "Mildred":"Yes?",
+        "mildred":"yes?",
         "where are you from":"I am from Iowa",
         "what is your favorite food":"dill pickles",
-        "do you like Alexa":"no I do not",
-        "do you like Green Eggs and Ham":"yes I do like green eggs and ham, Sam I am",
-        "hi":"hello Wyatt",
+        "do you like alexa":"no I do not",
+        "do you like green eggs and ham":"yes I do like green eggs and ham, Sam I am",
+        "hi":"hello wyatt",
         "change the termostat to 50 degrees":"ok termostat changed to 50 degrees",
         "thermostat":"going to thermostat",
         "lighting":"going to lighting",
         "usage":"going to usage",
-        "home":"going to home"
+        "home":"going to home",
+        "set":"changing setting on thermostat",
+        "turn":"switching lights"
     };
     
+}
+
+function filterText($saidText){
+    $text = strtolower($saidText);
+    if(str_contains($text, 'goto')){
+        return (str_replace('goto','',$text));        
+    } else if(str_contains($text, 'set')){
+        return "set";
+    } else if(str_contains($text, 'turn')){
+        return "turn";
+    } 
+    return $text;
 }
 
 
