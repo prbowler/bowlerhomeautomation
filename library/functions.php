@@ -31,7 +31,7 @@ function getSfOptions($sfSp) {
 function getlighting($lightingData) {
     $switches = "<div id='lights'>";
     foreach($lightingData as $room) {
-        $name = $room['name'];
+        $name = $room['room'];
         $src = "/img/$name.jpg";
         $switches .= '<div class="room">';
         $switches .= "<span>";

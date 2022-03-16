@@ -9,7 +9,8 @@ if (!('webkitSpeechRecognition' in window)) {
     recognition.maxAlternatives = 1;
     
     recognition.onresult = function(event) { 
-        saidText = "";
+        let saidText = "";
+        
         for (let i = event.resultIndex; i < event.results.length; i++) {
             if (event.results[i].isFinal) {
                 saidText = event.results[i][0].transcript;
@@ -17,19 +18,13 @@ if (!('webkitSpeechRecognition' in window)) {
                 saidText += event.results[i][0].transcript;
             }
         }
-        document.getElementById('spokenTxt').value = saidText;
-        $text = filterText($saidText);
-        for (let key in speachTxt) {
-            console.log("key= ", key);
-            if(key == text) {
-                document.getElementById('txt').value = speachTxt[key];
-                break;
-            } else {
-                document.getElementById('txt').value = 'I do not understand!';
-            }
-        }
-    
-        document.getElementById('theForm').submit();
+        let text = saidText.toLowerCase();
+        let cmdText = filterText(text);
+        document.getElementById('spokenTxt').value = cmdText;
+        document.getElementById('txt').value = getResponse(cmdText);
+        respond(text);
+
+        //theForm.submit();
     }
     
     recognition.onspeechend = function() {
@@ -65,22 +60,99 @@ if (!('webkitSpeechRecognition' in window)) {
         "usage":"going to usage",
         "home":"going to home",
         "set":"changing setting on thermostat",
-        "turn":"switching lights"
+        "turn":"switching lights",
+        "error":"there was an error processing your request"
     };
     
 }
 
-function filterText($saidText){
-    $text = strtolower($saidText);
-    if(str_contains($text, 'goto')){
-        return (str_replace('goto','',$text));        
-    } else if(str_contains($text, 'set')){
-        return "set";
-    } else if(str_contains($text, 'turn')){
-        return "turn";
-    } 
-    return $text;
+function getResponse(text){
+    let response = 'error';
+    for (let key in speachTxt) {
+        console.log("key= ", key);
+        if(key == text) {
+            response =  speachTxt[key];
+            break;
+        } else {
+            response =  'I do not understand!';
+        }
+    }
+    return response;
 }
+
+function respond(text){
+    if (document.getElementById('theForm')){
+        let theForm = document.getElementById('theForm');
+        let action = document.getElementById('action');
+        let item = document.getElementById('item');
+        if(text.includes('set')){
+            let indexTo = text.lastIndexOf("to");
+            let str = text.slice(indexTo + 3);
+            let int = parseInt(str);
+            let htgSetting = document.getElementById('htgSetting');
+            let clgSetting = document.getElementById('clgSetting');
+            if (document.getElementById('tstatSP')){
+                let tstatSp = document.getElementById('tstatSP');
+                if(text.includes('heat') && int < clgSetting.value && int < 80 && int > 60){
+                    htgSetting.value = int;
+                    tstatSp.submit();
+                } else if(text.includes('cool') && int > htgSetting.value && int < 80 && int > 60){
+                    clgSetting.value = int;
+                    tstatSp.submit();
+                } 
+            } else {
+                document.getElementById('txt').value = "error";
+                document.forms[0].submit();    
+            } 
+        } else if(text.includes('system')){
+            let sys = document.getElementById('sys')
+            if(text.includes('heat')){sys.value = 'htg';} 
+            else if(text.includes('cool')){sys.value = 'clg';}
+            else if(text.includes('auto')){sys.value = 'auto';} 
+            else if(text.includes('off')){sys.value = 'off';}
+            document.getElementById('tstatSys').submit;
+        } else if(text.includes('turn') && text.includes('light') && text.includes('on')){
+            let indexTurn = text.indexOf("turn");
+            let str = text.slice(indexTurn);
+            let room = string.replace('on', '');
+            room = room.replace('the');
+            let lightSw = room.trim();
+            document.getElementById('')
+        } else if(text.includes('thermostat')){
+            action.value = 'tstat';
+            theForm.submit();
+        } else if(text.includes('light')){
+            action.value = 'lighting';
+            theForm.submit();
+        } else if(text.includes('usage')){
+            action.value = 'usage';
+            theForm.submit();
+        } else if(text.includes('home')){
+            action.value = 'home';
+            theForm.submit();
+        } 
+    }
+}
+
+function filterText(text){
+    if(text.includes('set')){
+        return 'set';
+    } else if(text.includes('turn')){
+        return "turn";
+    } else if(text.includes('thermostat')){
+        return 'thermostat';
+    } else if(text.includes('light')){
+        return 'lighting';
+    } else if(text.includes('usage')){
+        return 'usage';
+    } else if(text.includes('home')){
+        action.value = 'home';
+        return 'home';
+    }
+    return text;
+}
+
+    
 
 
 

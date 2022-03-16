@@ -1,7 +1,9 @@
 <?php 
     $pageTitle = "Usage";
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/header.php'; 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php'; 
+    if (isset($_SESSION['loggedin']) && ($_SESSION['loggedin'])) {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php';
+    } 
 ?> 
 
     <h1 id="tytle"> Watt Usage Per Breaker </h1>

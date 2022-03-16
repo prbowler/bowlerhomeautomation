@@ -5,31 +5,29 @@
         $txt=rawurlencode($txt);
         $html=file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&client=gtx&q='.$txt.'&tl=en-US');
         $player="<audio controls='controls' autoplay><source src='data:audio/mpeg;base64,".base64_encode($html)."'></audio>";
-        echo $player;
+        //echo $player;
     }
 
-    if(isset($_POST['spokenTxt'])){
-        $spokenTxt = $_POST['spokenTxt'];
+    if(isset($_POST['action'])){
+        $action = $_POST['action'];
     } else {
-        $spokenTxt = 'default';
+        $action = 'default';
     }
 
-    switch($spokenTxt){
-        case 'thermostat':
-            include './tstat/index.php';
-            break;
+    switch ($action){
+        case 'tstat':
+          header('location: /tstat/');  
+        break; 
         case 'lighting':
-            include './lighting/index.php';
-            break;
+          header('location: /lighting/');  
+        break;
         case 'usage':
-            include './usage/index.php';
-            break;
+          header('location: /usage/');  
+        break;   
         case 'home':
-            include './index.php';
-            break;
+           header('location: /');  
+        break;   
         default:
-        include './index.php';
-
+           header('location: /');
     }
-
 ?>
