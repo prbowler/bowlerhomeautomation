@@ -26,25 +26,19 @@
     }
 
     switch ($action){
-        case 'switchOn':
-            $lightSw = filter_input(INPUT_POST, 'lightSw');
-            if($lightSw == NULL) {
-                echo "invalid light switch";  
-            } else {
-                echo "switching $lightSw to on";
-                turnOnSw($lightSw);
-            } 
-            header('location: /tstat/index.php'); 
-        break; 
-        case 'switchOff':
-            $lightSw = filter_input(INPUT_POST, 'lightSw');
-            if($lightSw == NULL) {
-                echo "invalid light switch";  
-            } else {
-                echo "switching $lightSw to on";
-                turnOffSw($lightSw);
-            } 
-            header('location: /tstat/index.php'); 
+        case 'switch':
+            if (isset($_POST['lights'])){
+                $lights = $_POST['lights'];
+                var_dump($lights);
+                foreach($lightingData as $room){
+                    if(in_array($room['room'], $lights)){
+                        turnOnSw($room['room']);
+                    } else {
+                        turnOffSw($room['room']);
+                    }
+                }  
+            }
+            header('location: /lighting/index.php'); 
         break; 
         default:
          include $_SERVER['DOCUMENT_ROOT'] . '/views/lighting.php';

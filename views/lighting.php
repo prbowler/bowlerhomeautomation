@@ -8,12 +8,11 @@
 
     <h1> Lighting Switches and Status </h1>
     <hr />
-    <?php echo $switches;?>
+    
     <form action="/lighting/index.php" method="post" id="lights">
+        <?php echo $switches;?>
         <input type="hidden" name="action" value="switch"> 
-        <input type="hidden" name="room" value="">
-        <input type="hidden" name="room" value="">
-        <input type="submit" value="Submit">
+        <input type="hidden" value="Submit">
     </form>
 
 <?php 

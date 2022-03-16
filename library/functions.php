@@ -32,16 +32,18 @@ function getlighting($lightingData) {
     $switches = "<div id='lights'>";
     foreach($lightingData as $room) {
         $name = $room['room'];
+        $id = $name . 'checkbox';
+        if ($room['switch'] == 1){$stat = 'checked';}else{$stat = '';}
         $src = "/img/$name.jpg";
         $switches .= '<div class="room">';
         $switches .= "<span>";
         $switches .= "<img class='switchImg' src=$src>";
-        $switches .= "<label class='switch'><input type='checkbox'><span class='slider'></span></label>";
+        $switches .= "<label class='switch'><input type='checkbox' id=$id name='lights[]' value=$name $stat onchange='switchLight()'><span class='slider'></span></label>";
         $switches .= "</span>";
-        if($room['status'] == "0"){
+        if($room['switch'] == "0"){
             $switches .= "<img id=$name src='/img/light.png' width='50' height='50'>";
         } else {
-            $switches .= "<img id=$name src='/img/lighton.png' width='50' height='50'>";
+            $switches .= "<img id=$name src='/img/light-on.png' width='50' height='50'>";
         }
         $switches .= "</div>";
     }

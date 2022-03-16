@@ -35,4 +35,17 @@ function turnOffSw($lightSw){
     return $rowsChanged;
 }
 
+function switchLight($room, $val){
+    $db = databaseConnect();
+    $sql = 'UPDATE lighting SET switch = :val WHERE room = :room';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':room', $room, PDO::PARAM_STR);
+    $stmt->bindValue(':val', $val, PDO::PARAM_BOOL);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
+
+
 ?>

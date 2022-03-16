@@ -113,11 +113,26 @@ function respond(text){
             document.getElementById('tstatSys').submit;
         } else if(text.includes('turn') && text.includes('light') && text.includes('on')){
             let indexTurn = text.indexOf("turn");
-            let str = text.slice(indexTurn);
-            let room = string.replace('on', '');
-            room = room.replace('the');
+            let str = text.slice(indexTurn + 5);
+            let room = str.replace('on', '');
+            room = room.replace('the','');
+            room = room.replace('light','');
+            room = room.replace('room','');
             let lightSw = room.trim();
-            document.getElementById('')
+            let roomName = lightSw[0].toUpperCase() + lightSw.substring(1) + 'checkbox';
+            document.getElementById(roomName).checked = true;
+            document.getElementById('lights').submit();
+        } else if(text.includes('turn') && text.includes('light') && text.includes('off')){
+            let indexTurn = text.indexOf("turn");
+            let str = text.slice(indexTurn + 5);
+            let room = str.replace('off', '');
+            room = room.replace('the','');
+            room = room.replace('light','');
+            room = room.replace('room','');
+            let lightSw = room.trim();
+            let roomName = lightSw[0].toUpperCase() + lightSw.substring(1) + 'checkbox';
+            document.getElementById(roomName).checked = false;
+            document.getElementById('lights').submit();
         } else if(text.includes('thermostat')){
             action.value = 'tstat';
             theForm.submit();
