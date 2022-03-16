@@ -62,6 +62,20 @@ function getUsage($breakerData) {
     return $usage;
 }
 
+function getCurrentUsage($breakerData){
+    $breakers = [];
+    foreach($breakerData as $breaker){
+        $breakers[$breaker["breakerName"]] = $breaker["amps"];
+    }
+    $jsonBreakerData = json_encode($breakers);
+    $myfile = fopen("../data/current.json","w") or die("Unable to open file!");
+    fwrite($myfile, $jsonBreakerData);
+}
+
+function getTotalUsage($breakerDataStats){
+   
+}
+
 function checkEmail($clientEmail){
     $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
     return $valEmail;

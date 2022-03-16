@@ -5,6 +5,7 @@
 
     //database connection
     $breakerData = getUsageData(); //with database
+    $breakerStats = getUsageDataStats();
     /*
     $breakerData = array(
         array("name"=>"Front","amps"=>"10","status"=>"0"),
@@ -13,7 +14,13 @@
         array("name"=>"MasterBR","amps"=>"10","status"=>"1")
     ); */ //without database
 
-    $usage = getUsage($breakerData);
+    var_dump($breakerData);
+    echo "new";
+    var_dump($breakerStats);
+    getCurrentUsage($breakerData);
+    //$totalUsage = getTotalUsage($breakerDataStats);
+    //var_dump($currentUsage);
+    //var_dump($totalUsage);
 
     if(isset($_COOKIE['firstname'])){
         $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);

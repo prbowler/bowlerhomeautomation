@@ -13,4 +13,14 @@ function getUsageData(){
     return $usageData;
 }
 
+function getUsageDataStats(){
+    $db = databaseConnect();
+    $sql = 'SELECT * FROM breakersstat';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $usageData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $usageData;
+}
+
 ?>
