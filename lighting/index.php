@@ -31,7 +31,7 @@
                 $lights = $_POST['lights'];
                 var_dump($lights);
                 foreach($lightingData as $room){
-                    if(in_array($room['room'], $lights)){
+                    if(count($lights) && in_array($room['room'], $lights)){
                         turnOnSw($room['room']);
                     } else {
                         turnOffSw($room['room']);
