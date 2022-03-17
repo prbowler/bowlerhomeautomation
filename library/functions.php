@@ -73,7 +73,20 @@ function getCurrentUsage($breakerData){
 }
 
 function getTotalUsage($breakerDataStats){
-   
+    $breakerTotal['LivingRoom'] = 0;
+    $breakerTotal['Kitchen'] = 0;
+    $breakerTotal['Hottub'] = 0;
+    foreach($breakerDataStats as $breakerStat){
+        if($breakerStat['breakerName'] == 'LivingRoom'){ $breakerTotal['LivingRoom'] += ($breakerStat['status'] * $breakerStat['amps']);}
+        if($breakerStat['breakerName'] == 'Kitchen'){ $breakerTotal['Kitchen'] += ($breakerStat['status'] * $breakerStat['amps']);}
+        if($breakerStat['breakerName'] == 'Hottub'){ $breakerTotal['Hottub'] += ($breakerStat['status'] * $breakerStat['amps']);}
+    }
+    $breakerWH['LivingRoom'] = $breakerTotal['LivingRoom'] / 60;
+    $breakerWH['Kitchen'] = $breakerTotal['Kitchen'] / 60;
+    $breakerWH['Hottub'] = $breakerTotal['Hottub'] / 60;
+    $jsonBreakerData = json_encode($breakerWH);
+    $myfile = fopen("../data/total.json","w") or die("Unable to open file!");
+    fwrite($myfile, $jsonBreakerData);
 }
 
 function checkEmail($clientEmail){

@@ -14,11 +14,8 @@
         array("name"=>"MasterBR","amps"=>"10","status"=>"1")
     ); */ //without database
 
-    var_dump($breakerData);
-    echo "new";
-    var_dump($breakerStats);
     getCurrentUsage($breakerData);
-    //$totalUsage = getTotalUsage($breakerDataStats);
+    getTotalUsage($breakerStats);
     //var_dump($currentUsage);
     //var_dump($totalUsage);
 
