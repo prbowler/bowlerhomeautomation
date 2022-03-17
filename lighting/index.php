@@ -29,14 +29,18 @@
         case 'switch':
             if (isset($_POST['lights'])){
                 $lights = $_POST['lights'];
-                var_dump($lights);
+                //var_dump($lights);
                 foreach($lightingData as $room){
-                    if(count($lights) && in_array($room['room'], $lights)){
+                    if(in_array($room['room'], $lights)){
                         turnOnSw($room['room']);
                     } else {
                         turnOffSw($room['room']);
                     }
                 }  
+            } else {
+                foreach($lightingData as $room){
+                    turnOffSw($room['room']);
+                }
             }
             header('location: /lighting/index.php'); 
         break; 
