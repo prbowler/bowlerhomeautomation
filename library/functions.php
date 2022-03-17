@@ -81,9 +81,9 @@ function getTotalUsage($breakerDataStats){
         if($breakerStat['breakerName'] == 'Kitchen'){ $breakerTotal['Kitchen'] += ($breakerStat['status'] * $breakerStat['amps']);}
         if($breakerStat['breakerName'] == 'Hottub'){ $breakerTotal['Hottub'] += ($breakerStat['status'] * $breakerStat['amps']);}
     }
-    $breakerWH['LivingRoom'] = $breakerTotal['LivingRoom'] / 60;
-    $breakerWH['Kitchen'] = $breakerTotal['Kitchen'] / 60;
-    $breakerWH['Hottub'] = $breakerTotal['Hottub'] / 60;
+    $breakerWH['LivingRoom'] = $breakerTotal['LivingRoom'] / 120;
+    $breakerWH['Kitchen'] = $breakerTotal['Kitchen'] / 120;
+    $breakerWH['Hottub'] = $breakerTotal['Hottub'] / 120;
     $jsonBreakerData = json_encode($breakerWH);
     $myfile = fopen("../data/total.json","w") or die("Unable to open file!");
     fwrite($myfile, $jsonBreakerData);

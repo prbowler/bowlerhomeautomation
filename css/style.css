@@ -129,6 +129,8 @@ label{
   margin-top: 10px;
   padding: 20px;
   background-color: rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
 }
 
 .t1 input{
@@ -147,7 +149,32 @@ label{
   background-color: white;
   padding: 10px;
   border-radius: 10px;
-  margin: auto;
+  margin: 5px 10px;
+}
+
+#satTemp{
+  font-size: 15px;
+  background-color: white;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 5px 10px;
+  width:fit-content;
+}
+
+#tstatStatus{
+  font-size: 12px;
+  background-color: white;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 5px 10px;
+}
+
+#tstatAlarm{
+  font-size: 12px;
+  background-color: white;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 5px 10px;
 }
 
 .t2 {

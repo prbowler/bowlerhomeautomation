@@ -10,8 +10,9 @@
     <form action="/tstat/index.php" method="post" id="tstatSP">
         <div class="tPart t1">
             <output type="number" id="zoneTemp" name="zoneTemp"><?php if(isset($zt)){echo $zt;} ?></output>
-            <input type="text" id="tstatStatus" name="tstatStatus" value="Heating" readonly>
-            <input type="text" id="tstatAlarm" name="tstatStatus" value="Normal" readonly>
+            <output type="number" id="satTemp" name="satTemp"><?php if(isset($sat)){echo "SAT $sat";} ?></output>
+            <output type="text" id="tstatStatus" name="tstatStatus"><?php if(isset($status)){echo "STAT $status";} ?></output>
+            <output type="text" id="tstatAlarm" name="tstatAlarm"><?php if(isset($system)){echo "SYS $system";} ?></output>
         </div>
         <div class="tPart t2">
             <label for="htgSetting">Heat</label>

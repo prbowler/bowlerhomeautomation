@@ -8,14 +8,10 @@ import math
 ser = serial.Serial('/dev/ttyAMA0', 38400)
 
 mydb = mysql.connector.connect(
-  #host="localhost",
-  #user="admin",
-  #password="fleetree123",
-  #database="usage"
-  host="us-cdbr-east-05.cleardb.net",
-  user="b4ea6cffd8b299",
-  password="3e88d9bf",
-  database="heroku_cd3f44fce4ead91"
+  host="localhost",
+  user="admin",
+  password="fleetree123",
+  database="usage"
 )
 
 try:
@@ -32,21 +28,21 @@ try:
             mycursor = mydb.cursor()
 
             watt1 = int(float(Z[1]))
-            if watt1 > 10:
+            if watt1 > 50:
                 status1 = 1
             else:
                 status1 = 0
                 watt1 = 0
 
             watt2 = int(float(Z[2]))
-            if watt2 > 10:
+            if watt2 > 50:
                 status2 = 1
             else:
                 status2 = 0
                 watt2 = 0
 
             watt3 = int(float(Z[3]))
-            if watt3 > 50:
+            if watt1 > 50:
                 status3 = 1
             else:
                 status3 = 0
@@ -54,35 +50,20 @@ try:
 
             ct = datetime.datetime.now()
 
-            sql = "INSERT INTO breakersstat (breakerId, breakerName, amps, status, time) VALUES (%s, %s, %s, %s, %s)"
+            sql = "INSERT INTO breakersstat (breakerId, name, amps, status, time) VALUES (%s, %s, %s, %s, %s)"
             val = (1, 'LivingRoom', watt1, status1, ct)
             mycursor.execute(sql, val)
             mydb.commit()
 
-            sql = "INSERT INTO breakersstat (breakerId, breakerName, amps, status, time) VALUES (%s, %s, %s, %s, %s)"
+            sql = "INSERT INTO breakersstat (breakerId, name, amps, status, time) VALUES (%s, %s, %s, %s, %s)"
             val = (2, 'Kitchen', watt2, status2, ct)
             mycursor.execute(sql, val)
             mydb.commit()
 
-            sql = "INSERT INTO breakersstat (breakerId, breakerName, amps, status, time) VALUES (%s, %s, %s, %s, %s)"
+            sql = "INSERT INTO breakersstat (breakerId, name, amps, status, time) VALUES (%s, %s, %s, %s, %s)"
             val = (4, 'Hottub', watt3, status3, ct)
             mycursor.execute(sql, val)
             mydb.commit() 
-
-            sql = "UPDATE breakers SET amps = %s WHERE breakerId = %s"
-            val = (watt1, 1)
-            mycursor.execute(sql, val)
-            mydb.commit()
-
-            sql = "UPDATE breakers SET amps = %s WHERE breakerId = %s"
-            val = (watt2, 2)
-            mycursor.execute(sql, val)
-            mydb.commit()
-            
-            sql = "UPDATE breakers SET amps = %s WHERE breakerId = %s"
-            val = (watt3, 4)
-            mycursor.execute(sql, val)
-            mydb.commit()
 
             # Print it nicely
             print ("----------")
@@ -100,4 +81,3 @@ try:
 
 except KeyboardInterrupt:
     ser.close()
-    mydb.cose()

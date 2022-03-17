@@ -14,6 +14,9 @@
     $sysSp = $tstatData['sysSp'];
     $sfSp = $tstatData['sfSp'];
     $zt = $tstatData['zt'];
+    $sat = $tstatData['sat'];
+    if($sat > $zt){ $status = "Heating";} else { $status = "Cooling";}
+    $system = "Normal"; //Add system check
 
     $sysOptions = getSysOptions($sysSp);
     $sfOptions = getSfOptions($sfSp);
