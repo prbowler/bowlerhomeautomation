@@ -13,6 +13,16 @@ function getLightingData(){
     return $lightingData;
 }
 
+function getLightingStats(){
+    $db = databaseConnect();
+    $sql = 'SELECT * FROM lightingstat';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $lightingStats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $lightingStats;
+}
+
 function turnOnSw($lightSw){
     $db = databaseConnect();
     $sql = 'UPDATE lighting SET switch = 1 WHERE room = :room';

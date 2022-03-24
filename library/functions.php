@@ -51,6 +51,39 @@ function getlighting($lightingData) {
     return $switches;
 }
 
+function fileLightingStats($lightingStats){
+    $rooms = [];
+    foreach($lightingStats as $room) {
+        if($room["switch"] = 1){
+            $rooms[$room["room"]] = $room["watts"];
+        } else {
+            $rooms[$room["room"]] = 0;
+        }
+    }
+    $jsonLightingStats = json_encode($rooms);
+    $myfile = fopen("../data/lightsCurrent.json","w") or die("Unable to open file!");
+    fwrite($myfile, $jsonLightingStats);
+    return $rooms;
+}
+
+function fileTotalLightingUsage($lightingStats, $rooms){
+    $roomLightTotal = [];
+    foreach($rooms as $room){
+        $roomLightTotal[$room] = 0;
+    }
+    foreach($lightingStats as $lightStat){
+        foreach($roomLightTotal as $key => $value ){
+            if($lightStat["room"] == $key){
+                $roomLightTotal[$key] += $lightStat['status'] * $lightStat['watts'];
+            }
+        }
+    }
+    
+    $jsonRoomLightingTotal = json_encode($roomLightTotal);
+    $myfile = fopen("../data/lightsTotal.json","w") or die("Unable to open file!");
+    fwrite($myfile, $jsonRoomLightingTotal);
+}
+
 function getUsage($breakerData) {
     $usage = "<div id='usage'>";
     

@@ -45,6 +45,8 @@
             header('location: /lighting/index.php'); 
         break;
         case 'stats':
+            $lightingStats = getLightingStats();
+            fileLightingStats($lightingStats);
             include $_SERVER['DOCUMENT_ROOT'] . '/views/lightingStats.php';
         break; 
         default:

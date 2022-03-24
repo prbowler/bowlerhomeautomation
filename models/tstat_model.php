@@ -14,6 +14,16 @@ function getTstatData($tstatId){
     return $tstatData;
 }
 
+function getTstatStats(){
+    $db = databaseConnect();
+    $sql = 'SELECT * FROM tstatstat';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $tstatStats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $tstatStats;
+}
+
 //Register new tstat
 function regTstat($tstatName){
     $db = databaseConnect();
