@@ -1,13 +1,9 @@
 #!/usr/bin/python2
-import serial
 import mysql.connector
 import time
 import datetime
 import math
-
-ser = serial.Serial('/dev/ttyAMA0', 38400)
-
-
+import random
 
 try:
     while 1:
@@ -21,37 +17,33 @@ try:
                 password="3e88d9bf",
                 database="heroku_cd3f44fce4ead91"
             )
-            # Read one line from the serial buffer
-            line = ser.readline()
-
-            # Remove the trailing carriage return line feed
-            line = line[:-2]
-
-            # Create an array of the data
-            Z = line.split()
-
+           
             mycursor = mydb.cursor()
 
-            watt1 = int(float(Z[1]))
-            if watt1 > 10:
-                status1 = 1
-            else:
+            w1 = random.randint(0,1)
+            w2 = random.randint(0,1)
+            w3 = random.randint(0,1)
+
+            if w1 == 0:
                 status1 = 0
                 watt1 = 0
-
-            watt2 = int(float(Z[2]))
-            if watt2 > 10:
-                status2 = 1
             else:
+                status1 = 1
+                watt1 = 15
+
+            if w2 == 0:
                 status2 = 0
                 watt2 = 0
-
-            watt3 = int(float(Z[3]))
-            if watt3 > 50:
-                status3 = 1
             else:
+                status2 = 1
+                watt2 = 15 
+
+            if w3 == 0:
                 status3 = 0
                 watt3 = 0
+            else:
+                status3 = 1
+                watt3 = 15 
 
             ct = datetime.datetime.now()
 
@@ -85,21 +77,10 @@ try:
             mycursor.execute(sql, val)
             mydb.commit()
 
-            # Print it nicely
-            print ("----------")
-            for i in range(len(Z)):
-                if i==0:
-                    print ("NodeID: %s" % Z[0])
-                elif i in [1,2,3]:
-                    amp = float(Z[i])
-                    print ("Power %d: %s W" % (i, amp))
-                elif i==4:
-                    temp = int(float(Z[i])) * 1.8 + 32
-                    print ("Temperature: %s F" % temp)
-                    
+            print ("Breaker1: %s Breaker2: %s Breaker3: %s"% (watt1,watt2,watt3))
+
             mydb.cose()
             time.sleep(30)    
 
 except KeyboardInterrupt:
-    ser.close()
     mydb.cose()

@@ -26,16 +26,7 @@ GPIO.setup(sf,GPIO.OUT)
 
 adc = ADCDevice() # Define an ADCDevice class object
 
-mydb = mysql.connector.connect(
-  #host="localhost",
-  #user="admin",
-  #password="fleetree123",
-  #database="tstat"
-  host="us-cdbr-east-05.cleardb.net",
-  user="b4ea6cffd8b299",
-  password="3e88d9bf",
-  database="heroku_cd3f44fce4ead91"
-)
+
 
 def setup():
     #turn all outputs off
@@ -55,6 +46,16 @@ def setup():
         
 def loop():
     while True:
+        mydb = mysql.connector.connect(
+            #host="localhost",
+            #user="admin",
+            #password="fleetree123",
+            #database="tstat"
+            host="us-cdbr-east-05.cleardb.net",
+            user="b4ea6cffd8b299",
+            password="3e88d9bf",
+            database="heroku_cd3f44fce4ead91"
+        )
         mycursor = mydb.cursor()
         mycursor.execute("SELECT * FROM tstats WHERE tstatId = 2")
         myresult = mycursor.fetchone()
@@ -136,7 +137,8 @@ def loop():
 
         f.write(json.dumps(int(zt)))
         f.close()
-
+        
+        mydb.close()    
         time.sleep(30)
 
 

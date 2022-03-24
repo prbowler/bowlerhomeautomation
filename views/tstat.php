@@ -21,6 +21,7 @@
             <input type="number" id="clgSetting" name="clgSet" class="setting" <?php if(isset($clgSp)){echo "value='$clgSp'";} ?>>
         </div>
         <input type="hidden" name="action" value="chgSp">
+        <input type="hidden" name="txt">
         <input type="submit" value="Change Sp" class="smallbtn">
     </form>
 
@@ -30,9 +31,11 @@
         </div>
         <div class="t4"> 
             <input type="hidden" name="action" value="chgSys"> 
+            <input type="hidden" name="txt">
             <input type="submit" value="Submit">
         </div>
     </form>
+    <a href="../tstat/index.php?action=stats">Stats</a>
 </div>
 
 <?php 

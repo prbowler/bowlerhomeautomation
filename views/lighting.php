@@ -7,11 +7,13 @@
 ?> 
 
     <h1> Lighting Switches and Status </h1>
+    <a href="../lighting/index.php?action=stats">Stats</a>
     <hr />
     
     <form action="/lighting/index.php" method="post" id="lights">
         <?php echo $switches;?>
         <input type="hidden" name="action" value="switch"> 
+        <input type="hidden" name="txt">
         <input type="hidden" value="Submit">
     </form>
 

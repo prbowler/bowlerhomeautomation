@@ -43,6 +43,9 @@
                 }
             }
             header('location: /lighting/index.php'); 
+        break;
+        case 'stats':
+            include $_SERVER['DOCUMENT_ROOT'] . '/views/lightingStats.php';
         break; 
         default:
          include $_SERVER['DOCUMENT_ROOT'] . '/views/lighting.php';

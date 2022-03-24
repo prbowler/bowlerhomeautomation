@@ -21,7 +21,12 @@ if (!('webkitSpeechRecognition' in window)) {
         let text = saidText.toLowerCase();
         let cmdText = filterText(text);
         document.getElementById('spokenTxt').value = cmdText;
-        document.getElementById('txt').value = getResponse(cmdText);
+        let responseTxt = getResponse(cmdText);
+        document.getElementById('txt').value = responseTxt;
+        let txtForms = document.getElementsByName('txt');
+        for(let t of txtForms){
+            t.value = responseTxt;
+        }
         respond(text);
 
         //theForm.submit();
@@ -145,7 +150,10 @@ function respond(text){
         } else if(text.includes('home')){
             action.value = 'home';
             theForm.submit();
-        } 
+        } else {
+            action.value = '';
+            theForm.submit()
+        }
     }
 }
 

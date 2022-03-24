@@ -30,6 +30,10 @@
          $action = filter_input(INPUT_GET, 'action');
     }
 
+    $txt = filter_input(INPUT_POST, 'txt');
+    if ($txt == NULL){
+         $txt = filter_input(INPUT_GET, 'txt');
+    }
     //$data = json_encode($tstatData);
 
     //writeFile("../data/data.txt", $data);
@@ -46,7 +50,7 @@
                 $clgSp = $clgSet;
                 changeSetpoints($htgSp,$clgSp,2);
             } 
-            header('location: /tstat/index.php');
+            header('location: /tstat/index.php?txt='.$txt);
         break; 
         case 'chgSys':
             $system = filter_input(INPUT_POST, 'sys');
@@ -59,7 +63,7 @@
             } else {
                 echo "Unable to change system incorect system";
             }
-            header('location: /tstat/index.php');
+            header('location: /tstat/index.php?txt='.$txt);
         break;
         case 'chgSf':
             $sf = filter_input(INPUT_POST, 'sf');
@@ -72,8 +76,11 @@
             } else {
                 echo "invalid sf perimeter";
             }
-            header('location: /tstat/index.php'); 
-        break;   
+            header('location: /tstat/index.php?txt='.$txt); 
+        break;
+        case 'stats':
+            include $_SERVER['DOCUMENT_ROOT'] . '/views/tstatStats.php';
+        break;
         default:
          include $_SERVER['DOCUMENT_ROOT'] . '/views/tstat.php';
     }
