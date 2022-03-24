@@ -1,5 +1,6 @@
 import json
 import time
+import datetime
 #import libioplus
 import mysql.connector
 
@@ -27,11 +28,22 @@ def loop():
 
         for light in myresult:
             num = light[0]
+            room = light[1]
             stat = light[2]
-            libioplus.setRelayCh(0, num, stat)
+            if stat == 1:
+                watts = light[3]
+            else:
+                watts = 0
+        
+            ct = datetime.datetime.now()
+            print(ct)
+            sql = "INSERT INTO lightingStat (lightId, room, switch, watts, time) VALUES (%s, %s, %s, %s, %s)"
+            val = (num, room, stat, watts, ct)
+            mycursor.execute(sql, val)
+            mydb.commit()
 
         mydb.close() 
-        time.sleep(10)
+        time.sleep(60)
 
 
 def destroy():

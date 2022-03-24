@@ -46,7 +46,8 @@
         break;
         case 'stats':
             $lightingStats = getLightingStats();
-            fileLightingStats($lightingStats);
+            $rooms = fileLightingStats($lightingData);
+            fileTotalLightingUsage($lightingStats,$rooms);
             include $_SERVER['DOCUMENT_ROOT'] . '/views/lightingStats.php';
         break; 
         default:

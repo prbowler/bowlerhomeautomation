@@ -51,10 +51,10 @@ function getlighting($lightingData) {
     return $switches;
 }
 
-function fileLightingStats($lightingStats){
+function fileLightingStats($lightingData){
     $rooms = [];
-    foreach($lightingStats as $room) {
-        if($room["switch"] = 1){
+    foreach($lightingData as $room) {
+        if($room["switch"] == 1){
             $rooms[$room["room"]] = $room["watts"];
         } else {
             $rooms[$room["room"]] = 0;
@@ -68,13 +68,13 @@ function fileLightingStats($lightingStats){
 
 function fileTotalLightingUsage($lightingStats, $rooms){
     $roomLightTotal = [];
-    foreach($rooms as $room){
-        $roomLightTotal[$room] = 0;
+    foreach($rooms as $k => $v){
+        $roomLightTotal[$k] = 0;
     }
     foreach($lightingStats as $lightStat){
         foreach($roomLightTotal as $key => $value ){
             if($lightStat["room"] == $key){
-                $roomLightTotal[$key] += $lightStat['status'] * $lightStat['watts'];
+                $roomLightTotal[$key] += $lightStat['switch'] * $lightStat['watts'];
             }
         }
     }
