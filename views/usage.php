@@ -7,7 +7,8 @@
 ?> 
 
 <main>
-    <h1> Watt Usage Per Breaker </h1>
+    <h1> Usage Per Breaker </h1>
+    <h2> Current Watt and Kilowatt Total
     <hr />
     <canvas id="Current"></canvas>
     <canvas id="Total"></canvas>

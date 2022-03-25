@@ -8,6 +8,7 @@
 
 <main>
     <h1> Lighting Usage Stats </h1>
+    <h2>Usage in Watts</h2>
     <hr />
     <canvas id="Current"></canvas>
     <canvas id="Total"></canvas>

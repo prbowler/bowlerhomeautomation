@@ -386,6 +386,11 @@ legend{
   color:black;
 }
 
+h2 {
+  color:antiquewhite;
+  font-size: 1rem;
+}
+
 @media screen and (min-width: 400px) {
 
   .t3{
