@@ -14,10 +14,11 @@ function getTstatData($tstatId){
     return $tstatData;
 }
 
-function getTstatStats(){
+function getTstatStats($tstatId){
     $db = databaseConnect();
     $sql = 'SELECT * FROM tstatstat';
     $stmt = $db->prepare($sql);
+    //$stmt->bindValue(':tstatId', $tstatId, PDO::PARAM_STR);
     $stmt->execute();
     $tstatStats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();

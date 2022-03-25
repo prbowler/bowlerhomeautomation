@@ -79,6 +79,9 @@
             header('location: /tstat/index.php?txt='.$txt); 
         break;
         case 'stats':
+            fileTstatStats($tstatData);
+            $tstatStats = getTstatStats(2);
+            fileTotalTstatUsage($tstatStats);
             include $_SERVER['DOCUMENT_ROOT'] . '/views/tstatStats.php';
         break;
         default:

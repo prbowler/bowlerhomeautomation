@@ -51,6 +51,41 @@ function getlighting($lightingData) {
     return $switches;
 }
 
+function fileTstatStats($tstatData){
+    $tstat = [];
+    if($tstatData["htg"] == 0 && $tstatData["sat"] > 79) {
+        $tstat["Kilawatts"] = 0.6;
+        $tstat["Propane"] = 0.9;
+    } else if(($tstatData["clg"] == 0 && $tstatData["sat"] < 65)){
+        $tstat["Kilawatts"] = 10;
+    } else {
+        $tstat["Kilawatts"] = 0;
+        $tstat["Propane"] = 0;
+    }
+    
+    $jsonTstatStats = json_encode($tstat);
+    $myfile = fopen("../data/tstatCurrent.json","w") or die("Unable to open file!");
+    fwrite($myfile, $jsonTstatStats);
+}
+
+function fileTotalTstatUsage($tstatStats){
+    $tstatTotal = [];
+    $tstatTotal["Kilawatts"] = 0;
+    $tstatTotal["Propane"] = 0;
+    foreach($tstatStats as $stat){
+        if($stat["htg"] == 0 && $stat["sat"] > 79) {
+            $tstatTotal["Kilawatts"] += 0.6;
+            $tstatTotal["Propane"] += 0.9;
+        } else if(($stat["clg"] == 0 && $stat["sat"] < 65)){
+            $tstatTotal["Kilawatts"] += 10;
+        } 
+    }
+    
+    $jsonTstatTotal = json_encode($tstatTotal);
+    $myfile = fopen("../data/tstatTotal.json","w") or die("Unable to open file!");
+    fwrite($myfile, $jsonTstatTotal);
+}
+
 function fileLightingStats($lightingData){
     $rooms = [];
     foreach($lightingData as $room) {

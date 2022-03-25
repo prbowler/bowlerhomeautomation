@@ -98,10 +98,10 @@ function respond(text){
             let clgSetting = document.getElementById('clgSetting');
             if (document.getElementById('tstatSP')){
                 let tstatSp = document.getElementById('tstatSP');
-                if(text.includes('heat') && int < clgSetting.value && int < 80 && int > 60){
+                if(text.includes('heat') && int < clgSetting.value && int < 81 && int > 59){
                     htgSetting.value = int;
                     tstatSp.submit();
-                } else if(text.includes('cool') && int > htgSetting.value && int < 80 && int > 60){
+                } else if(text.includes('cool') && int > htgSetting.value && int < 81 && int > 59){
                     clgSetting.value = int;
                     tstatSp.submit();
                 } 
