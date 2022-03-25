@@ -6,8 +6,9 @@
     } 
 ?> 
 
+<main>
     <h1> Lighting Switches and Status </h1>
-    <a href="../lighting/index.php?action=stats">Stats</a>
+    <a class="statButton btn" href="../lighting/index.php?action=stats">Stats</a>
     <hr />
     
     <form action="/lighting/index.php" method="post" id="lights">
@@ -16,8 +17,9 @@
         <input type="hidden" name="txt">
         <input type="hidden" value="Submit">
     </form>
-
+</main>
+    
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
+    //require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 

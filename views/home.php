@@ -6,11 +6,13 @@
     } 
      
 ?> 
+<main>
+    <h1> Welcome to Bowler Home Automation </h1>
+    <hr />
+</main>
 
-<h1> Welcome to Bowler Home Automation </h1>
-<hr />
 
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
+    //require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 

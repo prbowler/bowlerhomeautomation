@@ -6,14 +6,16 @@
     } 
 ?> 
 
-    <h1 id="tytle"> Watt Usage Per Breaker </h1>
+<main>
+    <h1> Watt Usage Per Breaker </h1>
     <hr />
     <canvas id="Current"></canvas>
     <canvas id="Total"></canvas>
     <script src="/js/graph.js"></script>
+</main>
 
 <?php 
     //echo $usage;
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
+    //require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 
