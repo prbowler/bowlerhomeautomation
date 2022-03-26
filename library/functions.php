@@ -153,12 +153,8 @@ function getTotalUsage($breakerDataStats, $breakers){
             }
         }
     }
-    $breakerWH = [];
-    foreach($breakerTotal as $kb => $vb){
-        $breakerWH[$kb] = $breakerTotal[$kb] / 120;
-    }
     
-    $jsonBreakerData = json_encode($breakerWH);
+    $jsonBreakerData = json_encode($breakerTotal);
     $myfile = fopen("../data/total.json","w") or die("Unable to open file!");
     fwrite($myfile, $jsonBreakerData);
 }
