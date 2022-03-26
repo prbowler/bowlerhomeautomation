@@ -138,20 +138,26 @@ function getCurrentUsage($breakerData){
     $jsonBreakerData = json_encode($breakers);
     $myfile = fopen("../data/current.json","w") or die("Unable to open file!");
     fwrite($myfile, $jsonBreakerData);
+    return $breakers;
 }
 
-function getTotalUsage($breakerDataStats){
-    $breakerTotal['LivingRoom'] = 0;
-    $breakerTotal['Kitchen'] = 0;
-    $breakerTotal['Hottub'] = 0;
-    foreach($breakerDataStats as $breakerStat){
-        if($breakerStat['breakerName'] == 'LivingRoom'){ $breakerTotal['LivingRoom'] += ($breakerStat['status'] * $breakerStat['amps']);}
-        if($breakerStat['breakerName'] == 'Kitchen'){ $breakerTotal['Kitchen'] += ($breakerStat['status'] * $breakerStat['amps']);}
-        if($breakerStat['breakerName'] == 'Hottub'){ $breakerTotal['Hottub'] += ($breakerStat['status'] * $breakerStat['amps']);}
+function getTotalUsage($breakerDataStats, $breakers){
+    $breakerTotal = [];
+    foreach($breakers as $k => $v){
+        $breakerTotal[$k] = 0;
     }
-    $breakerWH['LivingRoom'] = $breakerTotal['LivingRoom'] / 120;
-    $breakerWH['Kitchen'] = $breakerTotal['Kitchen'] / 120;
-    $breakerWH['Hottub'] = $breakerTotal['Hottub'] / 120;
+    foreach($breakerDataStats as $breakerStat){
+        foreach($breakerTotal as $key => $value ){
+            if($breakerStat["breakerName"] == $key){
+                $breakerTotal[$key] += $breakerStat['status'] * $breakerStat['amps'];
+            }
+        }
+    }
+    $breakerWH = [];
+    foreach($breakerTotal as $kb => $vb){
+        $breakerWH[$kb] = $breakerTotal[$kb] / 120;
+    }
+    
     $jsonBreakerData = json_encode($breakerWH);
     $myfile = fopen("../data/total.json","w") or die("Unable to open file!");
     fwrite($myfile, $jsonBreakerData);
