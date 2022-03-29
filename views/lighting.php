@@ -8,7 +8,7 @@
 
 <main>
     <h1> Lighting Switches and Status </h1>
-    <a class="statButton btn" href="../lighting/index.php?action=stats">Stats</a>
+    <a class="statButton btn" href="../lighting/index.php?action=stats">Log Data</a>
     <hr />
     
     <form action="/lighting/index.php" method="post" id="lights">

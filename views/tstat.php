@@ -8,7 +8,7 @@
 
 <main>
     <h1> <?php echo $pageTitle; ?> </h1>
-    <a class="statButton btn" href="../tstat/index.php?action=stats">Stats</a>
+    <a class="statButton btn" href="../tstat/index.php?action=stats">Log Data</a>
     <hr />
 
     <div id="tstat">

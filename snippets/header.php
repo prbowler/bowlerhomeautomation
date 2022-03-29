@@ -19,7 +19,7 @@
                 $linkAccountsLogout = "/users/index.php?action=Logout";
                 $linkAccountsLogin = "/users/index.php?action=login";
                 if (isset($_SESSION['loggedin']) && ($_SESSION['loggedin'])) { 
-                    echo "<span class='loginstatus'><a class='account' href='/users/index.php'>Welcome ". $_SESSION['userData']['email'] . "</a> | <a class='account' href='/users/index.php?action=Logout'>Logout</a></span>";
+                    echo "<span class='loginstatus'><a class='account' href='/users/index.php'>Welcome ". $_SESSION['userData']['email'] . " |- " . "</a> <a class='account' href='/users/index.php?action=Logout'>Logout</a></span>";
                 } else {
                     echo "<span class='loginstatus'><a class='account' href='/users/index.php?action=login'>My Account</a></span>";
                 }
