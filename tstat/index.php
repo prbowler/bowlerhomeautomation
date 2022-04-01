@@ -48,7 +48,7 @@
                 echo "new htg setting $htgSet new clg setting $clgSet";
                 $htgSp = $htgSet;
                 $clgSp = $clgSet;
-                changeSetpoints($htgSp,$clgSp,2);
+                changeSetpoints($htgSp,$clgSp,1);
             } 
             header('location: /tstat/index.php?txt='.$txt);
         break; 
@@ -59,7 +59,7 @@
             } else if($system == "htg" || $system == "clg" || $system == "auto" || $system == "off"){
                 echo "changing system to $system"; 
                 $sysSp = $system;
-                changeSystemSp($sysSp,2);
+                changeSystemSp($sysSp,1);
             } else {
                 echo "Unable to change system incorect system";
             }
@@ -72,7 +72,7 @@
             } else if($sf == "on" || $sf == "auto"){
                 echo "change sf to $sf";
                 $sfSp = $sf;
-                changeSfSp($sfSp,2);
+                changeSfSp($sfSp,1);
             } else {
                 echo "invalid sf perimeter";
             }
