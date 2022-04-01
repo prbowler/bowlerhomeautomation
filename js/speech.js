@@ -1,3 +1,8 @@
+/*  https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API 
+*   Modified By Philip Bowler
+*/
+
+
 if (!('webkitSpeechRecognition' in window)) {
     alert("Unable to use the Speech Recognition API");
 } else {

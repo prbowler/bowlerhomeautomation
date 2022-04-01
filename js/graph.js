@@ -1,3 +1,13 @@
+/*!
+ * Chart.js
+ * http://chartjs.org/
+ * Version: 2.5.0
+ *
+ * Copyright 2017 Nick Downie
+ * Released under the MIT license
+ * https://github.com/chartjs/Chart.js/blob/master/LICENSE.md
+ */
+
 function getData(url, chart){
   fetch(url)
   .then(response => response.json())

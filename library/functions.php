@@ -1,5 +1,6 @@
 <?php
 
+//Setup HTML/PHP for thermostat system settings using the current setting returns HTML/PHP to be displayed 
 function getSysOptions($sysSp) {
     $options = array('htg','clg','auto','off');
     $sysOptions = "<label for='sys'>System:</label><select name='sys' id='sys' size='4'>";
@@ -14,6 +15,7 @@ function getSysOptions($sysSp) {
     return $sysOptions;
 }
 
+//Not Used for future setup HTML/PHP for sf settings using the current setting returns HTML/PHP to be displayed 
 function getSfOptions($sfSp) {
     $options = array('auto','on');
     $sfOptions = "<label for='sf'>SF:</label><select name='sf' id='sf' size='2'>";
@@ -28,6 +30,7 @@ function getSfOptions($sfSp) {
     return $sfOptions;
 }
 
+//Setup HTML/PHP for displaying current lighting settings and switched to change returns HTML/PHP to be displayed 
 function getlighting($lightingData) {
     $switches = "<div id='lights'>";
     foreach($lightingData as $room) {
@@ -51,6 +54,7 @@ function getlighting($lightingData) {
     return $switches;
 }
 
+//Sends thermostat stats to JSON file for JS to read  
 function fileTstatStats($tstatData){
     $tstat = [];
     if($tstatData["htg"] == 0 && $tstatData["sat"] > 79) {
@@ -68,6 +72,7 @@ function fileTstatStats($tstatData){
     fwrite($myfile, $jsonTstatStats);
 }
 
+//Sends thermostat log stats to JSON file for JS to read 
 function fileTotalTstatUsage($tstatStats){
     $tstatTotal = [];
     $tstatTotal["Kilawatts"] = 0;
@@ -86,6 +91,7 @@ function fileTotalTstatUsage($tstatStats){
     fwrite($myfile, $jsonTstatTotal);
 }
 
+//Sends lighting stats to JSON file for JS to read 
 function fileLightingStats($lightingData){
     $rooms = [];
     foreach($lightingData as $room) {
@@ -101,6 +107,7 @@ function fileLightingStats($lightingData){
     return $rooms;
 }
 
+//Sends lighting log stats to JSON file for JS to read
 function fileTotalLightingUsage($lightingStats, $rooms){
     $roomLightTotal = [];
     foreach($rooms as $k => $v){
@@ -119,6 +126,7 @@ function fileTotalLightingUsage($lightingStats, $rooms){
     fwrite($myfile, $jsonRoomLightingTotal);
 }
 
+//Not Used Sets up HTML/PHP data for display of usage data from breakers by breaker
 function getUsage($breakerData) {
     $usage = "<div id='usage'>";
     
@@ -130,6 +138,7 @@ function getUsage($breakerData) {
     return $usage;
 }
 
+//Sets up HTML/PHP data for display of usage data from breakers by breaker
 function getCurrentUsage($breakerData){
     $breakers = [];
     foreach($breakerData as $breaker){
@@ -141,6 +150,7 @@ function getCurrentUsage($breakerData){
     return $breakers;
 }
 
+//Sets up HTML/PHP data for display of totaled usage data from breakers by breaker
 function getTotalUsage($breakerDataStats, $breakers){
     $breakerTotal = [];
     foreach($breakers as $k => $v){
@@ -159,6 +169,7 @@ function getTotalUsage($breakerDataStats, $breakers){
     fwrite($myfile, $jsonBreakerData);
 }
 
+//Checks to see if email is valid
 function checkEmail($clientEmail){
     $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
     return $valEmail;
@@ -170,12 +181,6 @@ function checkEmail($clientEmail){
 function checkPassword($clientPassword){
     $pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]\s])(?=.*[A-Z])(?=.*[a-z])(?:.{8,})$/';
     return preg_match($pattern, $clientPassword);
-}
-
-function writeFile($filename, $data){
-    //$myfile = fopen($filename, "w") or die("Unable to open file!");
-    //fwrite($myfile, $data);
-    //fclose($myfile);
 }
 
 ?>
