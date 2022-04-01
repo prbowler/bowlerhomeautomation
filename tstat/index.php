@@ -80,7 +80,7 @@
         break;
         case 'stats':
             fileTstatStats($tstatData);
-            $tstatStats = getTstatStats(2);
+            $tstatStats = getTstatStats(1);
             fileTotalTstatUsage($tstatStats);
             include $_SERVER['DOCUMENT_ROOT'] . '/views/tstatStats.php';
         break;
