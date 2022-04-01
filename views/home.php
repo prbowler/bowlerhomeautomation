@@ -13,6 +13,5 @@
 
 
 <?php 
-    //require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 

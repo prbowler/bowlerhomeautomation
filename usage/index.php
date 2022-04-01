@@ -6,19 +6,11 @@
     //database connection
     $breakerData = getUsageData(); //with database
     $breakerStats = getUsageDataStats();
-    /*
-    $breakerData = array(
-        array("name"=>"Front","amps"=>"10","status"=>"0"),
-        array("name"=>"Kitchen","amps"=>"20","status"=>"1"),
-        array("name"=>"Dining","amps"=>"10","status"=>"0"),
-        array("name"=>"MasterBR","amps"=>"10","status"=>"1")
-    ); */ //without database
+    
 
     $breakers = getCurrentUsage($breakerData);
     getTotalUsage($breakerStats, $breakers);
-    //var_dump($currentUsage);
-    //var_dump($totalUsage);
-
+    
     if(isset($_COOKIE['firstname'])){
         $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
     }

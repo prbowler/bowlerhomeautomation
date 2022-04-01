@@ -5,10 +5,7 @@
 
     //database conection   
     $tstatData = getTstatData(1); //with database
-    //$tstatData = array("htgSp"=>"68","clgSp"=>"78","sysSp"=>"auto","sfSp"=>"auto","zt"=>"68"); //when do dtatbase
-
-
-    //var_dump($tstatData);
+    
     $htgSp = $tstatData['htgSp'];
     $clgSp = $tstatData['clgSp'];
     $sysSp = $tstatData['sysSp'];

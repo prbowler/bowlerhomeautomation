@@ -14,7 +14,6 @@
     <script src="/js/graph.js"></script>
 </main>
 
-<?php 
-    //require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/tts.php'; 
+<?php  
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/footer.php'; 
 ?> 
