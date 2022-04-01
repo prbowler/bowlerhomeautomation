@@ -57,7 +57,7 @@ def loop():
             database="heroku_cd3f44fce4ead91"
         )
         mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM tstats WHERE tstatId = 2")
+        mycursor.execute("SELECT * FROM tstats WHERE tstatId = 1")
         myresult = mycursor.fetchone()
         print(myresult)
         
@@ -129,7 +129,7 @@ def loop():
         ct = datetime.datetime.now()
         print(ct)
         sql = "INSERT INTO tstatStat (tstatId, htgSp, clgSp, sysSp, zt, sat, sf, htg, clg, time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        val = (2, htgSp, clgSp, sysSp, zt, sat, GPIO.input(sf), GPIO.input(htg), GPIO.input(clg), ct)
+        val = (1, htgSp, clgSp, sysSp, zt, sat, GPIO.input(sf), GPIO.input(htg), GPIO.input(clg), ct)
         mycursor.execute(sql, val)
         mydb.commit()
 
