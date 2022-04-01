@@ -97,9 +97,9 @@ try:
                     temp = int(float(Z[i])) * 1.8 + 32
                     print ("Temperature: %s F" % temp)
                     
-            mydb.cose()
+            mydb.close()
             time.sleep(30)    
 
 except KeyboardInterrupt:
     ser.close()
-    mydb.cose()
+    mydb.close()
