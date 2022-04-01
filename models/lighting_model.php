@@ -13,6 +13,7 @@ function getLightingData(){
     return $lightingData;
 }
 
+//Get all lighting log stats
 function getLightingStats(){
     $db = databaseConnect();
     $sql = 'SELECT * FROM lightingstat';
@@ -23,6 +24,7 @@ function getLightingStats(){
     return $lightingStats;
 }
 
+//Set the switch to on in data base
 function turnOnSw($lightSw){
     $db = databaseConnect();
     $sql = 'UPDATE lighting SET switch = 1 WHERE room = :room';
@@ -34,6 +36,7 @@ function turnOnSw($lightSw){
     return $rowsChanged;
 }
 
+//Set the switch to off in data base
 function turnOffSw($lightSw){
     $db = databaseConnect();
     $sql = 'UPDATE lighting SET switch = 0 WHERE room = :room';
@@ -45,6 +48,7 @@ function turnOffSw($lightSw){
     return $rowsChanged;
 }
 
+//Set the switch to val in data base
 function switchLight($room, $val){
     $db = databaseConnect();
     $sql = 'UPDATE lighting SET switch = :val WHERE room = :room';

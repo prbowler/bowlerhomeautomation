@@ -1,35 +1,30 @@
 <?php 
     session_start();
     require_once $_SERVER['DOCUMENT_ROOT'] . '/library/functions.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/lighting_model.php'; //with database
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/lighting_model.php'; 
 
-    //database connection
-    $lightingData = getLightingData(); //with database
+    //database connection get lighting data from database
+    $lightingData = getLightingData(); 
     
-    /*$lightingData = array(
-        array("name"=>"Front","status"=>"0"),
-        array("name"=>"Kitchen","status"=>"1"),
-        array("name"=>"Dining","status"=>"0"),
-        array("name"=>"MasterBR","status"=>"1")
-    ); //without database*/
-    //var_dump($lightingData);
-
+    //Get HTML/PHP data to display from database data
     $switches = getLighting($lightingData);
 
+    //Is not used
     if(isset($_COOKIE['firstname'])){
         $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
     }
    
+    //Checks for an action either post of get
     $action = filter_input(INPUT_POST, 'action');
     if ($action == NULL){
          $action = filter_input(INPUT_GET, 'action');
     }
 
     switch ($action){
+        //Switch the light either on or off
         case 'switch':
             if (isset($_POST['lights'])){
                 $lights = $_POST['lights'];
-                //var_dump($lights);
                 foreach($lightingData as $room){
                     if(in_array($room['room'], $lights)){
                         turnOnSw($room['room']);
@@ -44,6 +39,7 @@
             }
             header('location: /lighting/index.php'); 
         break;
+        //Show the lighting logs
         case 'stats':
             $lightingStats = getLightingStats();
             $rooms = fileLightingStats($lightingData);
@@ -51,6 +47,7 @@
             include $_SERVER['DOCUMENT_ROOT'] . '/views/lightingStats.php';
         break; 
         default:
+         //Show the lighting switches
          include $_SERVER['DOCUMENT_ROOT'] . '/views/lighting.php';
     }
 ?>
