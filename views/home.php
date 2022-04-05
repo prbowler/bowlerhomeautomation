@@ -3,8 +3,6 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/header.php'; 
     if (isset($_SESSION['loggedin']) && ($_SESSION['loggedin'])) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/snippets/menu.php';
-    } else {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/login.php';
     }
      
 ?> 
