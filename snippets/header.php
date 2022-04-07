@@ -15,6 +15,7 @@
     <body>
         <header>
             <?php 
+                include "../snippets/logo.php";
                 $linkAccounts = "/users/index.php";
                 $linkAccountsLogout = "/users/index.php?action=Logout";
                 $linkAccountsLogin = "/users/index.php?action=login";
