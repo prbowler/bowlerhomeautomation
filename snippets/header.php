@@ -14,8 +14,12 @@
     </head>
     <body>
         <header>
+            <div id="logo">
+                <a href="https://bowlerhomepage.herokuapp.com/">
+                    <img class="logo" src="/img/logo.jpg" alt="Logo" height="50" width="50">
+                </a>
+            </div>
             <?php 
-                include "../snippets/logo.php";
                 $linkAccounts = "/users/index.php";
                 $linkAccountsLogout = "/users/index.php?action=Logout";
                 $linkAccountsLogin = "/users/index.php?action=login";
